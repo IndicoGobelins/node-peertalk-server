@@ -1,0 +1,25 @@
+{
+  "name": "peertalk-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IndicoGobelins/node-peertalk-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IndicoGobelins/node-peertalk-server/issues"
+  },
+  "homepage": "https://github.com/IndicoGobelins/node-peertalk-server#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "peertalk": "^1.0.2",
+    "socket.io": "^2.3.0"
+  }
+}
