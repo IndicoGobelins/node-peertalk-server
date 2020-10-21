@@ -23,6 +23,6 @@ const WsRouter = new Router({
 
 
 WsRouter
-    .on('test', TestController)
+    .on('TEST', TestController)
     .on('INDICO', IndicoController)
     .init();

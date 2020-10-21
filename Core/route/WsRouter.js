@@ -12,6 +12,7 @@ class WsRouter {
         const { webSocketInstance } = options;
         this.events = [];
         this.io = webSocketInstance;
+        this.testMode = false;
     }
 
     /**
@@ -32,19 +33,26 @@ class WsRouter {
     init() {
         this.io.on('connection', socket => {
             console.log('A new client is connected with this socket : ', socket.id);
-            const peerTalkServer = new Peertalk();
 
-            peerTalkServer.then(iosCommander => {
-                iosCommander.emit("send", "PeerTalk message here!");
-                this.events.forEach((event, index) => {
-                    const {name, controller} = event;
-                    socket.on(name, socketEvent => {
-                        new controller({socket, ioInstance: this.io, iosCommander}).fire(socketEvent);
+            if (!this.testMode) {
+                const peerTalkServer = new Peertalk();
+
+                peerTalkServer.then(iosCommander => {
+                    iosCommander.emit("send", "PeerTalk message here!");
+                    this.events.forEach((event, index) => {
+                        const {name, controller} = event;
+                        socket.on(name, socketEvent => {
+                            new controller({socket, ioInstance: this.io, iosCommander}).fire(socketEvent);
+                        });
                     });
-                });
-            }).catch(error => {
-                console.log(error);
-            })
+                }).catch(error => {
+                    console.log(error);
+                })
+            } else {
+                socket.on('TEST', socketEvent => {
+                    console.log(socketEvent);
+                })
+            }
         });
     }
 }
