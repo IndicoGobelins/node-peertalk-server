@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "forever logs server.js -f"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "forever": "^3.0.2",
     "nodemon": "^2.0.4",
     "peertalk": "^1.0.2",
     "socket.io": "^2.3.0"

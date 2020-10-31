@@ -39,6 +39,12 @@ class WsRouter {
 
                 peerTalkServer.then(iosCommander => {
                     iosCommander.emit("send", "PeerTalk message here!");
+
+                    iosCommander.on("data", data => {
+                        const newData = data.replace(/[^\x20-\x7E]/g, '');
+                        socket.emit(newData);
+                    });
+
                     this.events.forEach((event, index) => {
                         const {name, controller} = event;
                         socket.on(name, socketEvent => {
