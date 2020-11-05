@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "forever logs server.js -f"
+    "start": "nodemon server.js -f"
   },
   "repository": {
     "type": "git",
